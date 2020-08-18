@@ -79,7 +79,7 @@
         </exec>
     </target>
 
-    <target name="docker-push" depends="docker-login">
+    <target name="docker-push" >
         <exec dir="${docker.app}" executable="docker">
             <arg value="push" />
             <arg value="${docker.image}:${version}" />
