@@ -24,8 +24,8 @@ pipeline {
             sh "ant upload-s3"
          }
       } 
-	  stage('docker-login) {
-	      steps {
+      stage('docker-login') {
+          steps {
             withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'username')]) {
                 sh "docker login -u $username -p $password"
             }
@@ -34,7 +34,7 @@ pipeline {
       stage('docker image') {
           steps{
               sh "ant docker-pull all-clean"
-	     }
-	  }
+         }
+      }
     }
 }
