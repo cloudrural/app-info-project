@@ -8,8 +8,6 @@
     <property name="archive.app" location="tar" />
     <property name="docker.app" location="docker" />
     <property name="bucket.name" value="s3://bhavya-app-info/" />
-    <property name="username" value="bhavya633" />
-    <property name="password" value="Sreeja786*" />
     <property name="docker.image" value="bhavya633/app-info" />
     <property name="version" value="1.0" />
     
@@ -60,10 +58,6 @@
     </target>   
     
     <!--Creating docker image-->
-    <target name="create-docker-stage">
-        <mkdir dir="${docker.app}/install" />
-    </target>
-    
     <target name="copy-artifacts-to-docker-stage" >
         <copy todir="${docker.app}/install">
             <fileset dir="${artifact.dir}/" />
@@ -79,17 +73,7 @@
         </exec>
     </target>
     
-    <target name="docker-login" depends="docker-image">
-        <exec dir="${docker.app}" executable="docker">
-            <arg value="login" />
-            <arg value="-u" />
-            <arg value="${username}" />
-            <arg value="-p" />
-            <arg value="${password}" />
-        </exec>
-    </target>
-        
-    <target name="docker-push" depends="docker-login">
+    <target name="docker-push" depends="docker-image">
         <exec dir="${docker.app}" executable="docker">
             <arg value="push" />
             <arg value="${docker.image}:${version}" />
