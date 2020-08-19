@@ -75,11 +75,8 @@
             <arg value="."/>
         </exec>
     </target>
-    <target name="docker-login" depends="docker-image">
-        <exec dir="${docker.app}" executable="docker">
-            <arg value="login"/ >
-        </exec>
-    <target name="docker-push" depends="docker-login">
+    
+    <target name="docker-push" depends="docker-image">
         <exec dir="${docker.app}" executable="docker">
             <arg value="push" />
             <arg value="${docker.image}:${version}" />
