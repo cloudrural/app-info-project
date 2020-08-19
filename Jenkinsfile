@@ -33,7 +33,7 @@ pipeline {
     }
       stage('docker image') {
           steps{
-              sh "ant docker-pull all-clean"
+              sh "ant docker-push all-clean"
          }
       }
     }
